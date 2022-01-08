@@ -11,21 +11,7 @@ import traceback
 
 class CustomSMTPServer(smtpd.SMTPServer):
 
-    def process_message(self, peer, mailfrom, rcpttos, data):
-
-        mailfrom.replace('\'', '')
-        mailfrom.replace('\"', '')
-
-        for recipient in rcpttos:
-            recipient.replace('\'', '')
-            recipient.replace('\"', '')
-
-        #		print('Receiving message from:', peer)
-        #		print('Message addressed from:', mailfrom)
-        #		print('Message addressed to  :', rcpttos)
-        #		print('MSG >>')
-        #		print(data)
-        #		print('>> EOT')
+    def process_message(self, peer, mailfrom, rcpttos, data, **kwargs):
 
         try:
             # DO WHAT YOU WANNA DO WITH THE EMAIL HERE
