@@ -26,8 +26,6 @@ class CustomSMTPServer(smtpd.SMTPServer):
         #		print('MSG >>')
         #		print(data)
         #		print('>> EOT')
-        with open('/opt/postfix-filter-loop/msg.txt', 'w') as f:
-            f.write(data)
 
         try:
             # DO WHAT YOU WANNA DO WITH THE EMAIL HERE
@@ -35,8 +33,9 @@ class CustomSMTPServer(smtpd.SMTPServer):
             # such as functions to change fields within the body (From, Reply-to etc),
             # and/or to send error codes/mails back to Postfix.
             # Error handling is not really fantastic either.
+            with open('/opt/postfix-filter-loop/msg.txt', 'w') as f:
+                f.write(data)
 
-            pass
         except:
             print('Something went south')
             print(traceback.format_exc())

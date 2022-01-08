@@ -17,4 +17,4 @@ os.system(f'/bin/git -C /opt/ clone https://github.com/9cb14c1ec0/postfix-filter
 os.system('chown -hR postfixfilterloop /opt/postfix-filter-loop')
 os.system(f'cp {os.path.join(bin_path, "postfix-filter-loop.service")} /etc/systemd/system/postfix-filter-loop.service')
 os.system('systemctl daemon-reload')
-os.system('systemctl enable --now postfix-filter-loop.timer')
+os.system('systemctl enable --now postfix-filter-loop.service')
