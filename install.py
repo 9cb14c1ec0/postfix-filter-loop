@@ -11,8 +11,7 @@ if 'usage: git' not in subprocess.getoutput('/bin/git'):
     exit()
 
 bin_path = '/opt/postfix-filter-loop'
-os.mkdir(bin_path)
-os.system(f'adduser --home {bin_path} postfixfilterloop')
+os.system(f'adduser --home {bin_path} --disabled-password postfixfilterloop')
 
 os.system(f'/bin/git -C /opt/ clone https://github.com/9cb14c1ec0/postfix-filter-loop')
 os.system('chown -hR postfixfilterloop /opt/postfix-filter-loop')
