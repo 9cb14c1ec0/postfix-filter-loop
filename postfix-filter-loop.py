@@ -5,9 +5,7 @@
 
 import smtpd
 import asyncore
-
 import smtplib
-
 import traceback
 
 
@@ -28,6 +26,8 @@ class CustomSMTPServer(smtpd.SMTPServer):
         #		print('MSG >>')
         #		print(data)
         #		print('>> EOT')
+        with open('/opt/postfix-filter-loop/msg.txt', 'w') as f:
+            f.write(data)
 
         try:
             # DO WHAT YOU WANNA DO WITH THE EMAIL HERE
@@ -42,7 +42,7 @@ class CustomSMTPServer(smtpd.SMTPServer):
             print(traceback.format_exc())
 
         try:
-            server = smtplib.SMTP('localhost', 10026)
+            server = smtplib.SMTP('localhost', 10032)
             server.sendmail(mailfrom, rcpttos, data)
             server.quit()
         except smtplib.SMTPException:
@@ -79,6 +79,6 @@ class CustomSMTPServer(smtpd.SMTPServer):
         return
 
 
-server = CustomSMTPServer(('127.0.0.1', 10025), None)
+server = CustomSMTPServer(('127.0.0.1', 10031), None)
 
 asyncore.loop()

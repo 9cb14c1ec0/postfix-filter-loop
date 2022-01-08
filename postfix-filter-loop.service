@@ -1,0 +1,8 @@
+[Unit]
+Description=Postfix content filter written in Python
+
+[Service]
+User=postfixfilterloop
+Type=simple
+ExecStart=/bin/python3 /opt/postfix-filter-loop/postfix-filter-loop.py
+Restart=no
